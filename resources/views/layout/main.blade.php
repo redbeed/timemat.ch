@@ -9,6 +9,12 @@
     <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
     <title>Timematch - Your timezone buddy</title>
+
+    <meta property="og:title" content="Timematch - Your timezone buddy">
+    <meta property="og:description" content="Hope i can help you with timezone chaos">
+
+    <meta name="twitter:title" content="Timematch - Your timezone buddy">
+    <meta name="twitter:description" content="Hope i can help you with timezone chaos">
 </head>
 <body class="bg-gray-100 h-full">
 
