@@ -1,47 +1,40 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="flex h-full">
-        <div class="container my-auto">
-            <div class="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-16 text-indigo-800">
-                Timemat<span class="text-indigo-300 font-normal">.</span>ch
-            </div>
-            @if($eventName)
-                <h1 class="text-center text-3xl sm:text-5xl md:text-6xl font-bold mb-10 break-all">
-                    {{ ucfirst($eventName) }}
-                    @if($eventOwner)
-                        <span class="text-2xl sm:text-3xl md:text-4xl text-gray-600 block">by {{ ucfirst($eventOwner)}}</span>
-                    @endif
-                </h1>
-            @endif
-            <div class="bg-white rounded-xl px-8 py-4 max-w-xl m-auto mb-5">
-                <div class="text-gray-400 pb-1">Original Time{{ $eventOwner ? ' by '.ucfirst($eventOwner) : '' }}</div>
-                <div data-original-time="{{$timeString}}" data-original-timezone="{{ $timezoneString }}">
-                    <div class="text-xl text-gray-600 font-medium" data-date>
-                        {{ $timeString }}
-                    </div>
-                    <div class="text-gray-400">
-                        {{ $timezoneString }}
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-white border-2 border-indigo-800 rounded-xl px-8 py-6 max-w-xl m-auto mb-5">
-                <div class="text-gray-400 pb-3">Your Local Time</div>
-                <div data-local-time>
-                    <div class="text-2xl sm:text-4xl text-indigo-800 font-bold" data-date>
-                        {{ $timeString }}
-                    </div>
-                    <div class="text-gray-400" data-timezone>Berlin</div>
-                </div>
-            </div>
-            <a href="https://github.com/redbeed/timemat.ch" class="flex items-center text-gray-600 justify-center">
-                <i class="fab fa-github fa-2x mr-3"></i> Found a Bug?
-            </a>
-            <a href="https://redbeed.com/imprint" target="_blank"
-               class="flex items-center mt-7 text-xs text-gray-600 justify-center">
-                Made with <i class="far fa-heart mx-2 text-red-500"></i> | Impressum
-            </a>
+    <div class="container my-auto">
+        <div class="text-center text-3xl sm:text-5xl md:text-6xl font-bold mb-16 text-indigo-800">
+            Timemat<span class="text-indigo-300 font-normal">.</span>ch
         </div>
+        <section id="generate-form">
+            <div class="bg-white border-2 border-indigo-800 rounded-xl px-8 py-6 max-w-xl m-auto mb-5">
+                <div class="text-gray-400 pb-3">Create your own</div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col">
+                        <label class="text-gray-580 mb-1">Your Name</label>
+                        <input name="userName" type="text" class="border-2 rounded text-lg py-1 px-2 border-indigo-800"
+                               placeholder="moVRs">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-gray-580 mb-1">Event Name</label>
+                        <input name="eventName" type="text" class="border-2 rounded text-lg py-1 px-2 border-indigo-800"
+                               placeholder="Meeting 1337">
+                    </div>
+                </div>
+                <hr class="my-5 border-1 border-gray-200">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col">
+                        <label class="text-gray-580 mb-1">Date</label>
+                        <input name="date" type="date" class="border-2 rounded text-lg py-1 px-2 border-indigo-800">
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-gray-580 mb-1">Time</label>
+                        <input name="time" type="time" class="border-2 rounded text-lg py-1 px-2 border-indigo-800">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="bg-indigo-800 text-white font-bold py-3 px-7 rounded-xl m-auto block">
+                Generate <i class="far fa-arrow-alt-circle-right"></i>
+            </button>
+        </section>
     </div>
 @endsection

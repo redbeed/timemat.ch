@@ -21,7 +21,7 @@ class HomeController extends Controller
         $timeString = $this->parseTime($timezone, $date, $time);
 
 
-        return view('home', [
+        return view('timer', [
             'timeString' => $timeString,
             'timezoneString' => $timezone,
             'eventName' => $eventName,
@@ -40,12 +40,15 @@ class HomeController extends Controller
         }
 
         $timeSegments = explode('-', $time);
+        $hour = $minutes = $seconds = 0;
 
-        if (count($timeSegments) !== 3) {
-            return null;
+        if (count($timeSegments) === 2) {
+            [$hour, $minutes] = $timeSegments;
         }
 
-        [$hour, $minutes, $seconds] = $timeSegments;
+        if (count($timeSegments) === 3) {
+            [$hour, $minutes, $seconds] = $timeSegments;
+        }
 
         return Carbon::parseFromLocale($date, null, $timezone)
             ->setTime($hour, $minutes, $seconds)

@@ -155,8 +155,97 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Time */ "./resources/js/components/Time.js");
+/* harmony import */ var _components_Generate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Generate */ "./resources/js/components/Generate.js");
+
 
 _components_Time__WEBPACK_IMPORTED_MODULE_0__["default"].init();
+_components_Generate__WEBPACK_IMPORTED_MODULE_1__["default"].init();
+
+/***/ }),
+
+/***/ "./resources/js/components/Generate.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Generate.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Generate; });
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var dayjs_plugin_utc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs/plugin/utc */ "./node_modules/dayjs/plugin/utc.js");
+/* harmony import */ var dayjs_plugin_utc__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_utc__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var dayjs_plugin_timezone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! dayjs/plugin/timezone */ "./node_modules/dayjs/plugin/timezone.js");
+/* harmony import */ var dayjs_plugin_timezone__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_timezone__WEBPACK_IMPORTED_MODULE_2__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+dayjs__WEBPACK_IMPORTED_MODULE_0__["extend"](dayjs_plugin_utc__WEBPACK_IMPORTED_MODULE_1__);
+dayjs__WEBPACK_IMPORTED_MODULE_0__["extend"](dayjs_plugin_timezone__WEBPACK_IMPORTED_MODULE_2__);
+
+var Generate = /*#__PURE__*/function () {
+  _createClass(Generate, null, [{
+    key: "init",
+    value: function init() {
+      var check = document.querySelectorAll('#generate-form');
+
+      if (check.length) {
+        new Generate();
+      }
+    }
+  }]);
+
+  function Generate() {
+    _classCallCheck(this, Generate);
+
+    this.container = document.getElementById('generate-form');
+    console.log(this.container);
+    this.userNameElm = this.container.querySelector('[name="userName"]');
+    this.eventNameElm = this.container.querySelector('[name="eventName"]');
+    this.dateElm = this.container.querySelector('[name="date"]');
+    this.timeElm = this.container.querySelector('[name="time"]');
+    this.button = this.container.querySelector('[type="submit"]');
+    this.timezone = dayjs__WEBPACK_IMPORTED_MODULE_0__["tz"].guess();
+    this.initTrigger();
+  }
+
+  _createClass(Generate, [{
+    key: "initTrigger",
+    value: function initTrigger() {
+      var _this = this;
+
+      this.button.addEventListener('click', function () {
+        var timezone = _this.timezone.replace('/', '-');
+
+        var time = _this.timeElm.value.replace(':', '-');
+
+        var url = "/".concat(timezone, "/").concat(_this.dateElm.value, "/").concat(time);
+
+        if (_this.eventNameElm.value) {
+          url += "/".concat(_this.eventNameElm.value);
+        }
+
+        if (_this.userNameElm.value) {
+          url += "/".concat(_this.userNameElm.value);
+        }
+
+        window.location.href = url;
+      });
+    }
+  }]);
+
+  return Generate;
+}();
+
+
 
 /***/ }),
 
@@ -196,7 +285,11 @@ var Time = /*#__PURE__*/function () {
   _createClass(Time, null, [{
     key: "init",
     value: function init() {
-      new Time();
+      var check = document.querySelectorAll('[data-original-time]');
+
+      if (check.length) {
+        new Time();
+      }
     }
   }]);
 

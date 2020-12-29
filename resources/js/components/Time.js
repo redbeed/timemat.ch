@@ -10,8 +10,10 @@ dayjs.extend(timezone);
 export default class Time {
 
     static init() {
-
-        new Time();
+        const check = document.querySelectorAll('[data-original-time]');
+        if(check.length) {
+            new Time();
+        }
     }
 
     constructor() {
