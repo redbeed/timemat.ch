@@ -31,5 +31,6 @@
     </footer>
 </div>
 <script src="{{asset('js/app.js')}}"></script>
+<script defer data-domain="timemat.ch" src="https://plausible.io/js/plausible.js"></script>
 </body>
 </html>
